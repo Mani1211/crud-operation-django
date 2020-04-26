@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="create" method="POST">
+        {% csrf_token %}
+        <input type="text" name="title" id="title"  placeholder="Title"><br><br>
+        <input type="text" name="desc" id="desc"  placeholder="Description"><br><br>
+        <input type="number" name="price" id="price"  placeholder="price"><br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+
+    
+<table border="1">
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tbody>
+        {% for p in post %}
+        <tr>
+            <td>{{p.title}}</td>
+            <td>{{p.desc}}</td>
+            <td>{{p.price}}</td>
+            <td><a href="{% url 'update' p.id %}">Update</a></td>
+            <td><a href="{% url 'delete' p.id %}">Delete</a></td>
+            <td><a href="{% url 'post' p.id %}">View</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
